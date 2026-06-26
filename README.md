@@ -8,7 +8,7 @@ The headline findings: two violations (10F, non food contact surface issues, and
 
 The data is public and the questions are the author's own framing, used to demonstrate an end to end analytical workflow rather than to fulfil a commissioned brief.
 
-## Business Problem
+## Problem
 
 The DOHMH inspects every restaurant in the city and records violations, scores and letter grades. With limited inspectors and limited budget, the practical problem is one of prioritisation: which violations matter most, which areas and cuisines are struggling, how performance is moving over time, and therefore where future effort would have the greatest impact. This project works through that problem in four stages, framed as the following questions:
 
