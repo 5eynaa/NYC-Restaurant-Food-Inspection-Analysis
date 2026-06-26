@@ -77,7 +77,7 @@ Built incrementally from a citywide overview to a per borough top five, using a 
 
 <img width="671" height="566" alt="image" src="https://github.com/user-attachments/assets/d97afd34-d64d-4eec-9a8e-9bde39337ccf" />
 
-100% stacked bar chart showing the top 5 violations per borough by count and percentage. Each bar represents a borough, segmented by the top 5 violation codes for that borough, displaying both the violation count and percentage share. 10F dominates every borough. Total violation counts are displayed above each bar. 8 unique violation codes appear across the chart as the top 5 codes vary between boroughs
+Fig 1. 100% stacked bar chart showing the top 5 violations per borough by count and percentage. Each bar represents a borough, segmented by the top 5 violation codes for that borough, displaying both the violation count and percentage share. 10F dominates every borough. Total violation counts are displayed above each bar. 8 unique violation codes appear across the chart as the top 5 codes vary between boroughs
 
 
 ### Question 2 — Which cuisines and neighbourhoods perform worst?
