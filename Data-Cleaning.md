@@ -4,45 +4,6 @@ DOHMH New York City Restaurant Inspection Results dataset. All cleaning carried 
 
 ---
 
-## Issue: uploading the data
-
-**The problem**
-
-A large CSV file (DOHMH New York City Restaurant Inspection Results) was imported into MySQL Workbench using the Table Data Import Wizard. The CSV contained 288,888 rows of data. After running the import, only 31 rows were successfully imported.
-
-**First diagnosis and attempted fix**
-
-Looking at the import error logs, the errors pointed to incorrect data types being auto-assigned by the wizard during the import configuration step. Specifically:
-
-- `PHONE` was set to `int` but phone numbers exceed MySQL's INT maximum value of 2,147,483,647
-- `BUILDING` was set to `int` but contained blank and non-numeric values
-- `ZIPCODE` was set to `int` but contained blank values
-- `BBL` was set to `int` but values exceeded INT range
-- `Longitude` was set to `json` instead of `double`
-
-These data types were corrected in the import wizard and the import attempted again. This improved the result slightly but still only returned 203 rows — far short of the expected 288,888.
-
-**Root cause**
-
-The MySQL Workbench Table Data Import Wizard has a known limitation with large files. It is not designed to reliably handle CSVs with hundreds of thousands of rows and was silently failing after a small number of records regardless of the data type corrections.
-
-**The fix that worked**
-
-`LOAD DATA INFILE` was used instead, which is MySQL's native bulk import command and is built specifically for handling large files efficiently. The steps were:
-
-1. Ran `SHOW VARIABLES LIKE 'secure_file_priv'` to identify the directory MySQL is permitted to read files from (`C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\`)
-2. Moved the CSV file into that directory
-3. Truncated the partially imported table to clear the 203 incomplete rows
-4. Ran the `LOAD DATA INFILE` command pointing to the new file location
-
-Result: all 288,888 rows imported with 0 skipped and 0 warnings.
-
-**Key takeaway**
-
-For any CSV file with more than a few thousand rows, `LOAD DATA INFILE` is the correct and reliable method. The Table Data Import Wizard is only suitable for small datasets.
-
----
-
 ## Step 1: Finding and deleting duplicate values
 
 **Layer 1:** This goes through every single row in the table and assigns a number to it. Using a photocopier analogy:
