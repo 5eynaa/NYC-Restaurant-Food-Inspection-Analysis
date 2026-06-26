@@ -68,14 +68,20 @@ Built incrementally from a citywide overview to a per borough top five, using a 
 
 **Key finding:** violation **10F** (non food contact surface issues, 40,037 occurrences) and **08A** (harborage conditions conducive to pests, 27,298 occurrences) rank first and second in every single borough without exception. Both are classified Not Critical, but critical violations such as 06D (food contact surface not sanitised), 02G (cold food held above temperature) and 04L (evidence of mice) consistently appear in ranks three to five. Frequency does not equal severity.
 
-<!-- ============================================================= -->
-<!-- IMAGE PLACEHOLDER 2 — QUESTION 1 VISUAL                        -->
-<!-- Paste your Question 1 Power BI visual here.                    -->
-<!-- Save into /visuals, then replace the line below with:          -->
-<!-- ![Question 1 — most common violations](visuals/your-file.png)  -->
-<!-- ============================================================= -->
+| Violation Code | Violation Description |
+| --- | --- |
+| 02B | Hot TCS food item not held at or above 140°F. |
+| 02G | Cold TCS food item held above 41°F; smoked or processed fish held above 38°F; intact raw eggs held above 45°F; or reduced oxygen packaged (ROP) TCS foods held above required temperatures except during active necessary preparation. |
+| 04L | Evidence of mice or live mice in establishment's food or non-food areas. |
+| 06C | Food, supplies, or equipment not protected from potential source of contamination during storage, preparation, transportation, display, service or from customer's refillable, reusable container. Condiments not in single-service containers or dispensed directly by the vendor. |
+| 06D | Food contact surface not properly washed, rinsed and sanitised after each use and following any activity when contamination may have occurred. |
+| 08A | Establishment is not free of harborage or conditions conducive to rodents, insects or other pests. |
+| 10B | Anti-siphonage or back-flow prevention device not provided where required; equipment or floor not properly drained; sewage disposal system in disrepair or not functioning properly. Condensation or liquid waste improperly disposed of. |
+| 10F | Non-food contact surface or equipment made of unacceptable material, not kept clean, or not properly sealed, raised, spaced or movable to allow accessibility for cleaning on all sides, above and underneath the unit. |
 
-![Question 1 — most common violations] <img width="671" height="566" alt="image" src="https://github.com/user-attachments/assets/d97afd34-d64d-4eec-9a8e-9bde39337ccf" />
+*Table 1. Violation code reference — descriptions for all unique violation codes appearing in the chart above.*
+
+<img width="671" height="566" alt="image" src="https://github.com/user-attachments/assets/d97afd34-d64d-4eec-9a8e-9bde39337ccf" />
 
 *Fig 1. 100% stacked bar chart showing the top 5 violations per borough by count and percentage. Each bar represents a borough, segmented by the top 5 violation codes for that borough, displaying both the violation count and percentage share. 10F dominates every borough. Total violation counts are displayed above each bar. 8 unique violation codes appear across the chart as the top 5 codes vary between boroughs.*
 
