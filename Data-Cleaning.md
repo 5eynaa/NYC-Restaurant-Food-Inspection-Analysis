@@ -17,7 +17,12 @@ It partitions across all 27 columns, meaning it only gives the same number seque
 SELECT *,
     ROW_NUMBER() OVER(
         PARTITION BY
-            CAMIS, DBA, BORO, ...all 27 columns...
+            CAMIS, DBA, BORO, BUILDING, STREET, ZIPCODE, PHONE,
+            `CUISINE DESCRIPTION`, `INSPECTION DATE`, ACTION,
+            `VIOLATION CODE`, `VIOLATION DESCRIPTION`, `CRITICAL FLAG`,
+            SCORE, GRADE, `GRADE DATE`, `RECORD DATE`, `INSPECTION TYPE`,
+            Latitude, Longitude, `Community Board`, `Council District`,
+            `Census Tract`, BIN, BBL, NTA, `Location Point1`
         ORDER BY CAMIS
     ) AS row_num
 FROM nyc_restaraunt_inspections.nyc_inspections
