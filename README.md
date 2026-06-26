@@ -92,14 +92,9 @@ Performance was measured with three complementary metrics rather than one: avera
 
 **Key finding:** with the raw cuisine labels grouped into broader categories (for example Bangladeshi, Pakistani and Indian folded into **South Asian**, and the various African cuisines into **African**), two groups stand out as the worst performers by average score across multiple boroughs. **South Asian** is the highest scoring group in four of the five boroughs, peaking in Queens (average score 37.1 across 2,415 inspections) and Brooklyn (34.4 across 1,488). **African** is the single worst cuisine/borough combination in the dataset, in Manhattan (38.6 across 574 inspections) and again high in the Bronx (34.2 across 434). At the other end, high volume groups like American and Beverages & Snacks score consistently well, driven by chains with standardised processes. Grouping the cuisines this way made the heatmap far more readable than the original long tail of individual labels, while still surfacing the same underlying risk concentration.
 
-<!-- ============================================================= -->
-<!-- IMAGE PLACEHOLDER 3 — QUESTION 2 VISUAL (CUISINE HEATMAP)      -->
-<!-- Paste your Question 2 cuisine standardisation heatmap here.    -->
-<!-- Save into /visuals, then replace the line below with:          -->
-<!-- ![Question 2 — cuisine heatmap](visuals/your-file.png)         -->
-<!-- ============================================================= -->
-
 <img width="731" height="560" alt="image" src="https://github.com/user-attachments/assets/0fde2b73-5697-4653-a3ae-8bef227d01b1" />
+
+*Fig 2. Heatmap showing average inspection scores by cuisine group and borough. Darker red indicates worse performance. Grey cells indicate no recorded inspections for that cuisine in that borough. African cuisine scores the highest in Manhattan.*
 
 
 ### Question 3 — How do grades and violations vary by borough and over time?
@@ -108,20 +103,19 @@ Performance was measured with three complementary metrics rather than one: avera
 
 **Key finding:** Grade A counts grow year on year across all boroughs from 2022 to 2024, suggesting genuine improvement. Manhattan carries the highest raw counts throughout, reflecting restaurant density rather than performance, so borough comparison needs rates rather than raw counts. Violation 10F grows substantially year on year up to 2024 in every borough. The 2025 figures are lower across the board because the dataset was extracted partway through the year, a caveat that must accompany any trend chart.
 
-<!-- ============================================================= -->
-<!-- IMAGE PLACEHOLDER 4 — QUESTION 3 VISUAL (GRADE TREND LINES)    -->
-<!-- Paste your Question 3 grade trend line chart(s) here.          -->
-<!-- Save into /visuals, then replace the line below with:          -->
-<!-- ![Question 3 — grade trends over time](visuals/your-file.png)  -->
-<!-- ============================================================= -->
-
 <img width="476" height="594" alt="image" src="https://github.com/user-attachments/assets/c2df5be7-7126-4c67-a28a-10d97b2ac8a5" />
+
+*Fig 3a. Line charts tracking grades (A, B, C and Pending/Not Yet Graded) distribution across NYC’s 5 boroughs (2022- 2025 YTD). The drop in the percentage of grades A, B, C and rise in Pending/Not Yet Graded in 2025 is due to an administrative lag rather than a performance decline.*
 
 
 <img width="467" height="592" alt="image" src="https://github.com/user-attachments/assets/24ed98bb-bc21-4777-9272-3fadf83826a2" />
 
+*Fig 3b. Line charts tracking finalised grades (A, B, and C) distribution across NYC’s 5 boroughs (2022- 2025 YTD), excluding Pending/Not Yet Graded.*
+
 
 <img width="509" height="572" alt="image" src="https://github.com/user-attachments/assets/d1b19e23-ecc2-4ee5-955c-bf78de05069d" />
+
+*Fig 3c. Line charts presenting top 5 violation codes per borough across NYC (2022 - 2025 YTD). Clear domination by 10F (non-food contact surface or equipment) in all 5 boroughs, showing a gradual upward trend. Refer to the Table 1. for the violation descriptions.*
 
 
 ### Question 4 — Where should the city focus?
@@ -135,7 +129,9 @@ A synthesis question, drawing on Questions 1 to 3 plus a neighbourhood (NTA) lev
 <!-- ![Question 4 — worst NTAs bubble map](visuals/your-file.png)   -->
 <!-- ============================================================= -->
 
-<img width="729" height="578" alt="image" src="https://github.com/user-attachments/assets/6a11a8ad-0f66-4f99-b005-52f5b1cf6399" />
+<img width="720" height="563" alt="image" src="https://github.com/user-attachments/assets/e727093a-ac0a-4160-acbf-37ba10a190c5" />
+
+*Fig 4. Bubble map showing NYC's top 10 highest-risk neighbourhoods by average inspection score. Larger bubbles indicate worse performance. Results are concentrated in Queens and Brooklyn, identifying these boroughs as the city's priority areas for food safety inspections and resource allocation.*
 
 
 ## Recommendations
