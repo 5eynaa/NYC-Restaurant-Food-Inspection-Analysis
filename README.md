@@ -75,7 +75,7 @@ Built incrementally from a citywide overview to a per borough top five, using a 
 <!-- ![Question 1 — most common violations](visuals/your-file.png)  -->
 <!-- ============================================================= -->
 
-*[ Question 1 visualisation goes here ]*
+<img width="671" height="566" alt="image" src="https://github.com/user-attachments/assets/d97afd34-d64d-4eec-9a8e-9bde39337ccf" />
 
 ### Question 2 — Which cuisines and neighbourhoods perform worst?
 
