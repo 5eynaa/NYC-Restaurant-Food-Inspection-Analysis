@@ -90,7 +90,8 @@ Performance was measured with three complementary metrics rather than one: avera
 <!-- ![Question 2 — cuisine heatmap](visuals/your-file.png)         -->
 <!-- ============================================================= -->
 
-*[ Question 2 visualisation goes here ]*
+<img width="731" height="560" alt="image" src="https://github.com/user-attachments/assets/0fde2b73-5697-4653-a3ae-8bef227d01b1" />
+
 
 ### Question 3 — How do grades and violations vary by borough and over time?
 
@@ -105,7 +106,14 @@ Performance was measured with three complementary metrics rather than one: avera
 <!-- ![Question 3 — grade trends over time](visuals/your-file.png)  -->
 <!-- ============================================================= -->
 
-*[ Question 3 visualisation goes here ]*
+<img width="476" height="594" alt="image" src="https://github.com/user-attachments/assets/c2df5be7-7126-4c67-a28a-10d97b2ac8a5" />
+
+
+<img width="467" height="592" alt="image" src="https://github.com/user-attachments/assets/24ed98bb-bc21-4777-9272-3fadf83826a2" />
+
+
+<img width="509" height="572" alt="image" src="https://github.com/user-attachments/assets/d1b19e23-ecc2-4ee5-955c-bf78de05069d" />
+
 
 ### Question 4 — Where should the city focus?
 
@@ -118,7 +126,8 @@ A synthesis question, drawing on Questions 1 to 3 plus a neighbourhood (NTA) lev
 <!-- ![Question 4 — worst NTAs bubble map](visuals/your-file.png)   -->
 <!-- ============================================================= -->
 
-*[ Question 4 visualisation goes here ]*
+<img width="729" height="578" alt="image" src="https://github.com/user-attachments/assets/6a11a8ad-0f66-4f99-b005-52f5b1cf6399" />
+
 
 ## Recommendations
 
