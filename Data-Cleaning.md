@@ -6,12 +6,9 @@ DOHMH New York City Restaurant Inspection Results dataset. All cleaning carried 
 
 ## Step 1: Finding and deleting duplicate values
 
-**Layer 1:** This goes through every single row in the table and assigns a number to it. Using a photocopier analogy:
+A three-phase approach was used to identify and remove duplicate rows from the dataset. The logic works by numbering every row in the table, isolating the duplicates, and then deleting them from the original table.
 
-- Original paper gets number **1**
-- Photocopy gets number **2**
-
-It partitions across all 27 columns, meaning it only gives the same number sequence to rows that are completely identical in every column.
+**Phase 1:** assigns a row number to every record, partitioned across all 27 columns. Rows that are completely identical in every column receive the same partition group, with the first occurrence numbered 1 and any duplicates numbered 2, 3, and so on.
 
 ```sql
 SELECT *,
@@ -28,13 +25,7 @@ SELECT *,
 FROM nyc_restaraunt_inspections.nyc_inspections
 ```
 
-**Layer 2:** This takes the result from Layer 1 and filters it down to only the photocopies — anything with row_num greater than 1. It then pulls out just three identifying columns from those rows:
-
-- CAMIS
-- INSPECTION DATE
-- VIOLATION CODE
-
-Think of this as creating a **list of photocopies to throw away**.
+**Phase 2:** This filters the result of phase 1 down to only the duplicate rows, anything with a row number greater than 1 and returns three identifying columns to use as the deletion target.
 
 ```sql
 SELECT CAMIS, `INSPECTION DATE`, `VIOLATION CODE`
@@ -42,7 +33,7 @@ FROM (...layer 1...) AS row_table
 WHERE row_num > 1
 ```
 
-**Layer 3:** This is the action layer. It says: **"Go into the table and delete any row where the combination of CAMIS, INSPECTION DATE and VIOLATION CODE matches something on our list of photocopies to throw away."**
+**Phase 3:** deletes any row from the main table where the combination of CAMIS, INSPECTION DATE and VIOLATION CODE matches a row returned by phase 2.
 
 ```sql
 DELETE FROM nyc_restaraunt_inspections.nyc_inspections
@@ -51,11 +42,6 @@ WHERE (CAMIS, `INSPECTION DATE`, `VIOLATION CODE`) IN (
 )
 ```
 
-### The full picture simply
-
-**Step 1** — Number every row, giving duplicates a higher number
-**Step 2** — Make a list of the rows that got a number higher than 1
-**Step 3** — Delete anything on that list from the real table
 
 ---
 
@@ -102,19 +88,14 @@ WHERE `INSPECTION DATE` = '01/01/1900';
 
 GRADE, SCORE and GRADE DATE had large blank counts — 148,032, 15,926 and 155,856 respectively. Before taking any action, an investigation query grouped by INSPECTION TYPE.
 
-This revealed that blank grades were directly linked to specific inspection types. In New York City's restaurant inspection system not all inspection types generate an official grade. For example administrative inspections check permit compliance and signage posting — they do not assess food safety and never produce a grade. Similarly cycle initial inspections only produce an immediate grade if the restaurant scores 13 or below. Higher scores result in a re-inspection first, meaning the grade column is intentionally blank on those rows.
 
-**Key lesson:** A blank value is not always a data quality problem. Understanding the business context behind the data is essential before deciding how to handle blanks.
-
-**Action taken:** Rather than populating these blanks with invented values which would be incorrect, empty strings were converted to proper NULL values. This preserves the meaning of the data while using the correct SQL standard for representing missing values.
+**Action taken:** Rather than populating these blanks with invented values, empty strings were converted to proper NULL values.
 
 ```sql
 UPDATE nyc_restaraunt_inspections.nyc_inspections SET GRADE = NULL WHERE GRADE = '';
 UPDATE nyc_restaraunt_inspections.nyc_inspections SET SCORE = NULL WHERE SCORE = '';
 UPDATE nyc_restaraunt_inspections.nyc_inspections SET `GRADE DATE` = NULL WHERE `GRADE DATE` = '';
 ```
-
-**Important distinction:** Converting empty strings to NULL does not add or change any data. It simply changes how the absence of data is represented, making it cleaner and more consistent for analysis.
 
 **Category 4 — Remaining blanks still to address**
 
@@ -132,14 +113,6 @@ UPDATE nyc_restaraunt_inspections.nyc_inspections SET `GRADE DATE` = NULL WHERE 
 | NTA | 3,703 | Missing geographic data |
 | Location Point1 | 285,177 | Entire column is blank |
 
-#### Key lessons for future projects
-
-1. **Always audit first** — run a full blank count across all columns before touching anything. Never assume where the blanks are.
-2. **Understand your data dictionary** — the official documentation for this dataset was essential in confirming that the 01/01/1900 rows were invalid and that blank grades were expected by design.
-3. **Blank does not always mean broken** — context matters enormously. A blank grade on an administrative inspection is correct. A blank grade on a re-inspection is suspicious. The same blank value can mean two completely different things depending on context.
-4. **Empty string vs NULL** — in MySQL an empty string and NULL both represent missing data but NULL is the proper standard. Always convert empty strings to NULL for consistency, especially in columns that will be used in calculations or aggregations.
-5. **Never populate values you cannot verify** — it is better to leave a value as NULL than to fill it with something that might be wrong. Incorrect data is more dangerous than missing data.
-6. **Investigate before deleting** — the 01/01/1900 rows were only deleted after confirming through multiple queries and the data dictionary that they had no analytical value. Always build the case before removing data.
 
 ---
 
@@ -149,11 +122,6 @@ UPDATE nyc_restaraunt_inspections.nyc_inspections SET `GRADE DATE` = NULL WHERE 
 
 During the data cleaning process of the dataset (288,876 rows after duplicate removal), it was discovered that the VIOLATION DESCRIPTION column contained multiple different versions of the same description for a single VIOLATION CODE.
 
-This happened for two reasons:
-
-- New York City health inspectors updated the official wording of violation descriptions over time, meaning older inspections had older wording and newer inspections had newer wording
-- Some descriptions had minor cosmetic differences such as extra spaces within the text
-
 #### The problem
 
 A GROUP BY query revealed the issue. For example violation code `08A` had two different descriptions:
@@ -161,7 +129,7 @@ A GROUP BY query revealed the issue. For example violation code `08A` had two di
 - **"Establishment is not free of harborage or conditions conducive to rodents, insects or other pests"** — 24,103 occurrences
 - **"Facility not vermin proof. Harborage or conditions conducive to attracting vermin to the premises and/or allowing vermin to exist"** — 3,195 occurrences
 
-Both descriptions mean the same thing but are worded differently. Left uncleaned this would cause grouping and analysis problems — the same violation would appear as two separate categories in any report or visualisation.
+Both descriptions with the same meaning, but worded differently. 
 
 #### The decision
 
@@ -183,21 +151,11 @@ Before making any changes to the main table, a spot check was run on known viola
 
 The main table was updated by joining it to the lookup table and replacing every description with the standardised version.
 
-Note: A timeout error (Error 2013) was encountered on the first attempt due to the size of the dataset. This was resolved by increasing the MySQL session timeout settings and reconnecting before running the query again.
-
 #### Step 5 — Verification
 
 A verification query confirmed the standardisation was successful: **0 rows returned** — every violation code now has exactly one standardised description.
 
 (Full queries for all five steps are in `sql/01_cleaning.sql`.)
-
-#### Key lessons for future projects
-
-1. **Always investigate before standardising** — run a GROUP BY query first to understand how many versions exist and how common each one is before deciding on an approach.
-2. **Create a lookup table rather than hardcoding values** — this approach scales to any number of violation codes automatically without needing to write individual CASE statements.
-3. **Verify before updating** — always check the lookup table against known values before running the UPDATE on the full dataset.
-4. **Exclude blank rows** — always add a WHERE clause to exclude rows where the column being standardised is empty, to avoid accidentally modifying clean inspection records.
-5. **Large updates may timeout** — for datasets with hundreds of thousands of rows, increase the MySQL session timeout before running bulk UPDATE statements, or split the update into batches by filtering on subsets of the data.
 
 ---
 
@@ -230,28 +188,20 @@ Rows belonging to venues, stadiums and transport hubs such as Citi Field concess
 
 **Problem 2 — Corrupted building numbers**
 
-Several rows had building numbers that were clearly wrong such as 106264, 40364040 and 15221524. No NYC building has a 6 or 8 digit building number. These appear to be data entry errors at the source, possibly two fields that were merged together accidentally.
+Several rows had building numbers that were clearly wrong such as 106264, 40364040 and 15221524. These appear to be data entry errors at the source, possibly two fields that were merged together accidentally.
 
 **Problem 3 — Valid looking building numbers**
 
 Some rows had building numbers that appeared legitimate such as 2057, 1155 and 2300 paired with recognisable NYC street names.
 
-Importantly all rows with missing zip codes also had missing latitude and longitude values stored as 0 rather than NULL, confirming these are inherently incomplete records at the data source level.
-
 #### Action taken
 
-Given that the affected rows represent only approximately 1% of the dataset, have missing coordinates, contain corrupted or zero building numbers, and that the primary analysis questions rely on BORO which is fully populated, all blank and zero zip code values were converted to NULL:
+Given that the affected rows represent only approximately 1% of the dataset, have missing coordinates, contain corrupted or zero building numbers, and that the primary analysis questions rely on BORO which is fully populated, all blank and zero zip code values were converted to NULL.
 
 ```sql
 UPDATE nyc_restaraunt_inspections.nyc_inspections
 SET ZIPCODE = NULL WHERE ZIPCODE = '' OR ZIPCODE = '0';
 ```
-
-#### Key lessons for future projects
-
-1. **Zero is not always a valid value** — in this dataset missing coordinates were stored as 0 rather than NULL. Always check for placeholder numeric values like 0 as well as empty strings and NULLs when auditing blanks.
-2. **Understand why data is missing** — the missing zip codes were spread across all boroughs and linked to venues without traditional addresses. This is a source data quality issue, not something introduced during import.
-3. **1% missing data is generally acceptable** — for a dataset of this size 2,831 missing zip codes will not materially affect borough or neighbourhood level analysis. It is better to acknowledge the limitation than to fill in values that cannot be verified.
 
 ---
 
