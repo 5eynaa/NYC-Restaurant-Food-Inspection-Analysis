@@ -7,13 +7,13 @@ DOHMH New York City Restaurant Inspection Results dataset. All cleaning carried 
 ## Table of Contents
 
 1. [Step 1: Finding and deleting duplicate values](#step-1-finding-and-deleting-duplicate-values)
-2. [Step 2a: Standardisation — Blanks (Grade and Score)](#step-2a-standardisation-blanks-grade-and-score)
-3. [Step 2b: Standardisation — Violation Code and Violation Description](#step-2b-standardisation-violation-code-and-violation-description)
-4. [Step 2c: Standardisation — Zipcode](#step-2c-standardisation-zipcode)
-5. [Step 2d: Standardisation — Geolocation](#step-2d-standardisation-geolocation)
-6. [Step 2e: Standardisation — Phone Number](#step-2e-standardisation-phone-number)
-7. [Street Name Standardisation](#street-name-standardisation)
-8. [Step 2f: Standardisation — Dates](#step-2f-standardisation-dates)
+2. [Step 2a: Standardisation - Blanks (Grade and Score)](#step-2a-standardisation-blanks-grade-and-score)
+3. [Step 2b: Standardisation - Violation Code and Violation Description](#step-2b-standardisation-violation-code-and-violation-description)
+4. [Step 2c: Standardisation - Zipcode](#step-2c-standardisation-zipcode)
+5. [Step 2d: Standardisation - Geolocation](#step-2d-standardisation-geolocation)
+6. [Step 2e: Standardisation - Phone Number](#step-2e-standardisation-phone-number)
+7. [Step 2f: Standardisation - Street Name](#step-2f-standardisation-street-name)
+8. [Step 2g: Standardisation - Dates](#step-2f-standardisation-dates)
 
 ---
 
