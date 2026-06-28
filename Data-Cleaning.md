@@ -6,18 +6,18 @@ DOHMH New York City Restaurant Inspection Results dataset. All cleaning carried 
 
 ## Table of Contents
 
-1. [Step 1: Finding and deleting duplicate values](#step-1-finding-and-deleting-duplicate-values)
-2. [Step 2a: Standardisation — Blanks (Grade and Score)](#step-2a-standardisation-blanks-grade-and-score)
-3. [Step 2b: Standardisation — Violation Code and Violation Description](#step-2b-standardisation-violation-code-and-violation-description)
-4. [Step 2c: Standardisation — Zipcode](#step-2c-standardisation-zipcode)
-5. [Step 2d: Standardisation — Geolocation](#step-2d-standardisation-geolocation)
-6. [Step 2e: Standardisation — Phone Number](#step-2e-standardisation-phone-number)
-7. [Street Name Standardisation](#street-name-standardisation)
-8. [Step 2f: Standardisation — Dates](#step-2f-standardisation-dates)
+1. [Step 1: Finding and Deleting Duplicate Values](#step-1-finding-and-deleting-duplicate-values)
+2. [Step 2a: Standardisation of Blanks (Grade and Score)](#step-2a-standardisation-of-blanks-grade-and-score)
+3. [Step 2b: Standardisation of Violation Code and Violation Description](#step-2b-standardisation-of-violation-code-and-violation-description)
+4. [Step 2c: Standardisation of Zipcode](#step-2c-standardisation-of-zipcode)
+5. [Step 2d: Standardisation of Geolocation](#step-2d-standardisation-of-geolocation)
+6. [Step 2e: Standardisation of Phone Number](#step-2e-standardisation-of-phone-number)
+7. [Step 2f: Standardisation of Street Names](#step-2f-standardisation-of-street-names)
+8. [Step 2g: Standardisation of Dates](#step-2g-standardisation-of-dates)
 
 ---
 
-## Step 1: Finding and deleting duplicate values
+## Step 1: Finding and Deleting Duplicate Values
 
 A three-phase approach was used to identify and remove duplicate rows from the dataset. The logic works by numbering every row in the table, isolating the duplicates, and then deleting them from the original table.
 
@@ -38,7 +38,7 @@ SELECT *,
 FROM nyc_restaraunt_inspections.nyc_inspections
 ```
 
-**Phase 2:** filters the result of Phase 1 down to only the duplicate rows — anything with a row number greater than 1 — and returns three identifying columns to use as the deletion target.
+**Phase 2:** filters the result of Phase 1 down to only the duplicate rows, anything with a row number greater than 1, and returns three identifying columns to use as the deletion target.
 
 ```sql
 SELECT CAMIS, `INSPECTION DATE`, `VIOLATION CODE`
@@ -57,7 +57,7 @@ WHERE (CAMIS, `INSPECTION DATE`, `VIOLATION CODE`) IN (
 
 ---
 
-## Step 2a: Standardisation — Blanks (Grade and Score)
+## Step 2a: Standardisation of Blanks (Grade and Score)
 
 #### Background
 
@@ -98,7 +98,7 @@ WHERE `INSPECTION DATE` = '01/01/1900';
 
 **Category 3: Expected blanks (correct by design)**
 
-GRADE, SCORE and GRADE DATE had large blank counts: 148,032, 15,926 and 155,856 respectively. Before taking any action, an investigation query grouped the results by INSPECTION TYPE. This revealed that blank grades were directly linked to specific inspection types — not all inspection types generate an official grade, so these blanks were correct by design rather than errors.
+GRADE, SCORE and GRADE DATE had large blank counts: 148,032, 15,926 and 155,856 respectively. Before taking any action, an investigation query grouped the results by INSPECTION TYPE. This revealed that blank grades were directly linked to specific inspection types; not all inspection types generate an official grade, so these blanks were correct by design rather than errors.
 
 **Action taken:** Rather than populating these blanks with invented values, empty strings were converted to proper NULL values. This preserves the meaning of the data while using the correct SQL standard for representing missing values.
 
@@ -126,7 +126,7 @@ UPDATE nyc_restaraunt_inspections.nyc_inspections SET `GRADE DATE` = NULL WHERE 
 
 ---
 
-## Step 2b: Standardisation — Violation Code and Violation Description
+## Step 2b: Standardisation of Violation Code and Violation Description
 
 #### Background
 
@@ -136,10 +136,10 @@ During the data cleaning process of the dataset (288,876 rows after duplicate re
 
 A GROUP BY query revealed the issue. For example, violation code `08A` had two different descriptions:
 
-- **"Establishment is not free of harborage or conditions conducive to rodents, insects or other pests"** — 24,103 occurrences
-- **"Facility not vermin proof. Harborage or conditions conducive to attracting vermin to the premises and/or allowing vermin to exist"** — 3,195 occurrences
+- "Establishment is not free of harborage or conditions conducive to rodents, insects or other pests" (24,103 occurrences)
+- "Facility not vermin proof. Harborage or conditions conducive to attracting vermin to the premises and/or allowing vermin to exist" (3,195 occurrences)
 
-Both descriptions carry the same meaning but are worded differently. Left uncleaned, this would cause grouping and analysis problems — the same violation would appear as two separate categories in any report or visualisation.
+Both descriptions carry the same meaning but are worded differently. Left uncleaned, this would cause grouping and analysis problems, as the same violation would appear as two separate categories in any report or visualisation.
 
 #### The decision
 
@@ -163,13 +163,13 @@ The main table was updated by joining it to the lookup table and replacing every
 
 #### Step 5: Verification
 
-A verification query confirmed the standardisation was successful: **0 rows returned** — every violation code now has exactly one standardised description.
+A verification query confirmed the standardisation was successful: **0 rows returned**, meaning every violation code now has exactly one standardised description.
 
 (Full queries for all five steps are in `sql/01_cleaning.sql`.)
 
 ---
 
-## Step 2c: Standardisation — Zipcode
+## Step 2c: Standardisation of Zipcode
 
 #### Background
 
@@ -215,7 +215,7 @@ SET ZIPCODE = NULL WHERE ZIPCODE = '' OR ZIPCODE = '0';
 
 ---
 
-## Step 2d: Standardisation — Geolocation
+## Step 2d: Standardisation of Geolocation
 
 #### Background
 
@@ -269,7 +269,7 @@ The BUILDING count came in at 484 rather than 481, accounted for by 3 additional
 
 ---
 
-## Step 2e: Standardisation — Phone Number
+## Step 2e: Standardisation of Phone Number
 
 #### Background
 
@@ -302,9 +302,13 @@ A preview query was run first, then the UPDATE was applied with a `WHERE PHONE I
 
 ---
 
-## Street Name Standardisation
+## Step 2f: Standardisation of Street Names
 
-#### Issue 3: Typos and misspellings
+#### Background
+
+During the blank value audit, the STREET column was flagged for further review. A suffix analysis query was run to identify recurring patterns at the end of street names. This revealed two categories of issue: typos and misspellings, and compass direction abbreviations.
+
+#### Issue 1: Typos and misspellings
 
 A suffix analysis query revealed genuine spelling errors in the dataset. The following typos were identified and corrected:
 
@@ -342,7 +346,7 @@ During the typo fix, the value `AVENUE OF TH AMER` was updated to `AVENUE OF THE
 
 **How many rows were affected:** 120 across all typo fixes. Verification: count of rows containing original typo values returned 0.
 
-#### Issue 4: Compass direction abbreviations
+#### Issue 2: Compass direction abbreviations
 
 Streets beginning with a single compass letter such as `S CONDUIT AVENUE`, `N CONDUIT AVENUE`, `E FORDHAM ROAD` and `W 42ND STREET` were investigated.
 
@@ -372,7 +376,7 @@ Verification: count of rows still starting with a single compass letter returned
 
 ---
 
-## Step 2f: Standardisation — Dates
+## Step 2g: Standardisation of Dates
 
 #### Background
 
