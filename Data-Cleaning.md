@@ -275,7 +275,7 @@ Following the geographic column audit, the PHONE column was identified as having
 
 #### Investigation findings
 
-A GROUP BY query identified the unique restaurants behind the 6 blank rows. It returned only **one unique restaurant** — VAN LEEUWEN ICE CREAM at 224 Front Street, Manhattan (CAMIS `50088489`). The 6 blank rows all belonged to the same restaurant appearing across multiple inspection records.
+A GROUP BY query identified the unique restaurants behind the 6 blank rows. It returned only **one unique restaurant**, VAN LEEUWEN ICE CREAM at 224 Front Street, Manhattan (CAMIS `50088489`). The 6 blank rows all belonged to the same restaurant appearing across multiple inspection records.
 
 #### Decision — convert to NULL rather than populate
 
