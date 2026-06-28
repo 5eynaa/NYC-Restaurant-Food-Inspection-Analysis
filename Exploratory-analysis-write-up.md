@@ -221,9 +221,3 @@ From Question 2, the South Asian group (Bangladeshi, Pakistani and Indian) carri
 **Which violations to address:** focus on 10F and 08A, the two dominant and growing violations citywide, and find a route to tackle them directly in the worst affected areas rather than continuing to cite them repeatedly.
 
 **Where the cuisine risk sits:** the South Asian and African cuisine groups in Queens, Brooklyn, Manhattan and the Bronx, where average scores are consistently highest.
-
-#### Limitations and caveats
-
-Several NTAs and cuisine/borough combinations showing the highest average scores have fewer than 100 inspections, making their averages less reliable for targeting. Any intervention should be validated against restaurant counts in those areas before resource allocation decisions are made.
-
-The 2025 data is partial (extracted September 2025) and should not be used for trend comparisons without adjustment for the partial year.
