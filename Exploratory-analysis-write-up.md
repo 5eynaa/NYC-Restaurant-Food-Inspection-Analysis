@@ -33,22 +33,17 @@ The query was expanded to include BORO. This returned every violation type for e
 
 A CTE with `ROW_NUMBER()` partitioned by borough was used to rank violations within each borough separately, so each of the five boroughs received its own top 5 ranking rather than one combined list weighted towards Manhattan's larger restaurant volume. **10F and 08A ranked 1st and 2nd in every single borough without exception**, indicating these are systemic citywide problems rather than localised ones.
 
-**Stage 4: Adding severity context**
-
-CRITICAL FLAG was added to the top 5 query. The two most frequent violations (10F and 08A) are both classified as Not Critical. However, violations ranked 3rd through 5th in most boroughs are typically Critical, including 06D (food contact surface not sanitised), 02G (cold food held above temperature) and 04L (evidence of mice). Frequency and severity do not align: the most cited violations are structural, while the most dangerous ones sit just below them.
-
 #### Findings summary
 
 | Finding | Detail |
 | ----- | ----- |
-| Most common violation citywide | 10F, non-food contact surface issues, 40,037 occurrences, Not Critical |
-| Second most common citywide | 08A, harborage conditions for pests, 27,298 occurrences, Not Critical |
+| Most common violation citywide | 10F, non-food contact surface issues, 40,037 occurrences |
+| Second most common citywide | 08A, harborage conditions for pests, 27,298 occurrences |
 | Top 2 pattern | 10F and 08A ranked 1st and 2nd in every borough without exception |
 | Borough with highest raw counts | Manhattan, driven by restaurant density |
 | Notable borough difference | Queens: 06C ranks 3rd instead of 06D as in all other boroughs |
-| Critical vs Not Critical pattern | Most frequent violations are Not Critical, but Critical violations consistently appear in ranks 3 to 5 |
 
-Across all five boroughs the most common violation is non-food contact surface issues (10F) followed by harborage conditions conducive to pests (08A), both classified as Not Critical. Critical violations including improper food temperature control and evidence of mice consistently appear in the top 5 across every borough.
+Across all five boroughs the most common violation is non-food contact surface issues (10F) followed by harborage conditions conducive to pests (08A).
 
 ---
 
