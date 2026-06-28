@@ -95,7 +95,7 @@ N, Z and P are administrative statuses rather than performance grades and should
 | Chinese | Queens | 30.77 | 9,399 |
 | South Asian | Bronx | 29.75 | 293 |
 
-**South Asian** (Bangladeshi, Pakistani and Indian combined) is the standout poor performer, appearing in four of the five boroughs and peaking in Queens (37.1 across 2,415 inspections). **African** produces the single worst cuisine/borough score in the dataset in Manhattan (38.6 across 574 inspections), and is also high in the Bronx. Both groups rest on far larger samples than the individual cuisine labels did before grouping, making the finding more reliable.
+**South Asian** is the standout poor performer, appearing in four of the five boroughs and peaking in Queens (37.1 across 2,415 inspections). **African** produces the single worst cuisine/borough score in the dataset in Manhattan (38.6 across 574 inspections), and is also high in the Bronx. Both groups rest on far larger samples than the individual cuisine labels did before grouping, making the finding more reliable.
 
 **Best performing cuisine groups:** high-volume groups such as American, Beverages & Snacks and Sandwiches/Soups/Salads consistently sit at the lower end of the average score ranking (lower = better), largely driven by chains with standardised processes and high inspection volumes. American in the Bronx, for example, averages 19.94 across 4,064 inspections.
 
@@ -212,7 +212,7 @@ Both are structural and infrastructure-related rather than one-off behavioural l
 
 #### Where the cuisine risk concentrates
 
-From Question 2, the South Asian group (Bangladeshi, Pakistani and Indian) carries the highest average scores across Queens, Brooklyn, Manhattan and the Bronx, and the African group is the single worst cuisine/borough combination in the dataset (Manhattan, average 38.6). These are the groups and areas where targeted support would have the most effect. The neighbourhoods where these cuisines are densest, such as Flushing and Elmhurst in Queens and parts of the Bronx, are logical starting points.
+From Question 2, the South Asian cuisine carries the highest average scores across Queens, Brooklyn, Manhattan and the Bronx, and the African group is the single worst cuisine/borough combination in the dataset (Manhattan, average 38.6). These are the groups and areas where targeted support would have the most effect. The neighbourhoods where these cuisines are densest, such as Flushing and Elmhurst in Queens and parts of the Bronx, are logical starting points.
 
 #### Key summary
 
