@@ -77,7 +77,7 @@ FROM nyc_restaraunt_inspections.nyc_inspections;
 
 The blanks fell into four distinct categories:
 
-**Category 1: No blanks (healthy columns)**
+**Category 1: No blanks**
 
 CAMIS, DBA, BORO, STREET, INSPECTION DATE, CRITICAL FLAG and RECORD DATE all returned zero blanks. These columns are complete and required no action.
 
