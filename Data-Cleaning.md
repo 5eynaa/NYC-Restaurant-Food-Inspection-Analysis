@@ -290,15 +290,14 @@ A current phone number for this restaurant was found via a Google search. Howeve
 
 After handling the blank values a standardisation step was applied. The raw phone numbers were stored as unformatted 10 digit strings such as `2125290539`. These were reformatted to the standard US format with dashes such as `212-529-0539`, using SUBSTRING to extract each segment and CONCAT to join them:
 
-- Characters 1 to 3 — area code
+- Characters 1 to 3
 - Dash
-- Characters 4 to 6 — exchange code
+- Characters 4 to 6
 - Dash
-- Characters 7 to 10 — subscriber number
+- Characters 7 to 10
 
 A preview query was run first, then the UPDATE applied with a `WHERE PHONE IS NOT NULL` clause to protect the NULL value set for Van Leeuwen Ice Cream from being processed by the formatting update.
 
-#### Key lessons for future projects
 
 
 ---
@@ -335,15 +334,15 @@ SET STREET = 'FLATBUSH AVENUE EXTENSION'
 WHERE STREET = 'FLATBUSH AVENUE EXT';
 ```
 
-PK similarly appeared in only 12 rows across two street names — MORRIS PK AVENUE and EDERLE TERRACE FLUSHING MEADOW CORONA PK. Both were confirmed as PARK abbreviations and fixed with targeted manual updates.
+PK similarly appeared in only 12 rows across two street names, MORRIS PK AVENUE and EDERLE TERRACE FLUSHING MEADOW CORONA PK. Both were confirmed as PARK abbreviations and fixed with targeted manual updates.
 
 **AVENUE OF TH AMER:**
 
-During the typo fix the value `AVENUE OF TH AMER` was updated to `AVENUE OF THE AMERICAS`. This was based on geographical knowledge of New York City where Avenue of the Americas is a well known Manhattan avenue also known as 6th Avenue. This change highlighted an important data cleaning principle — geographical assumptions should always be verified against other columns in the dataset (such as BORO and ZIPCODE) rather than applied on the basis of assumed knowledge alone. Avenue of the Americas runs through Manhattan with ZIP codes in the 10001 to 10036 range, so cross referencing those columns confirms the change.
+During the typo fix the value `AVENUE OF TH AMER` was updated to `AVENUE OF THE AMERICAS`. This was based on geographical knowledge of New York City where Avenue of the Americas is a well known Manhattan avenue also known as 6th Avenue. This change highlighted an important data cleaning principle, geographical assumptions should always be verified against other columns in the dataset (such as BORO and ZIPCODE) rather than applied on the basis of assumed knowledge alone. Avenue of the Americas runs through Manhattan with ZIP codes in the 10001 to 10036 range, so cross referencing those columns confirms the change.
 
 **How many rows were affected:** 120 across all typo fixes. Verification: count of rows containing original typo values returned 0.
 
-#### Issue 4 — Compass direction abbreviations
+#### Issue 4 - Compass direction abbreviations
 
 Streets beginning with a single compass letter such as `S CONDUIT AVENUE`, `N CONDUIT AVENUE`, `E FORDHAM ROAD` and `W 42ND STREET` were investigated.
 
@@ -371,28 +370,10 @@ WHERE STREET REGEXP '^(N|S|E|W) ';
 
 Verification: count of rows still starting with a single compass letter returned 0.
 
-#### Issue 5 — Ordinal suffixes on numbered streets
-
-Numbered streets were found to appear without ordinal suffixes throughout the dataset. For example `3 AVENUE` instead of `3RD AVENUE` and `86 STREET` instead of `86TH STREET`.
-
-**Decision made:** After reviewing the four analysis questions it was determined that ordinal suffix standardisation was not necessary. The analysis questions operate at borough, neighbourhood, cuisine and violation level. The exact format of a street number has no impact on any analytical outcome. The transformation was also identified as the most technically complex change attempted during cleaning, carrying meaningful risk of corrupting street names if the ordinal rules were not implemented perfectly.
-
-**Action taken:** None — consciously deferred as not required for analysis.
-
-**Key lesson:** Knowing when not to clean something is as important as knowing when to clean it. Every data cleaning decision should be driven by whether it improves the quality of the analysis. Changes that introduce risk without delivering analytical benefit should be avoided.
-
-#### Key lessons for future projects
-
-1. **Always preview before updating** — every single change in this section was previewed on a sample of rows before being applied to the full dataset. This caught potential issues such as the EXT risk before any damage could be done.
-2. **Count affected rows before updating** — knowing exactly how many rows will change before running an update is essential for verifying the result afterwards.
-3. **Word boundaries matter** — using `\b` in regex patterns prevented abbreviations from being incorrectly matched inside longer words. Without this ST would have matched inside STREET and AVE inside AVENUE.
-4. **Understand the geography before standardising addresses** — New York City has unusual street naming conventions including lettered avenues and directional designations that differ from standard expectations.
-5. **Verify assumptions against other columns** — the AVENUE OF TH AMER situation demonstrated that geographical assumptions should always be cross referenced against other available data such as borough and ZIP code before being applied.
-6. **Know when to stop** — the ordinal suffix decision demonstrated that analytical relevance should drive every cleaning decision.
 
 ---
 
-## Step 2g: Standardising (`Dates: Column and Value`)
+## Step 2f: Standardising (`Dates: Column and Value`)
 
 #### Background
 
