@@ -57,7 +57,7 @@ WHERE (CAMIS, `INSPECTION DATE`, `VIOLATION CODE`) IN (
 
 ---
 
-## Step 2a: Standardisation — Blanks (Grade and Score)
+## Step 2a: Standardisation - Blanks (Grade and Score)
 
 #### Background
 
@@ -126,7 +126,7 @@ UPDATE nyc_restaraunt_inspections.nyc_inspections SET `GRADE DATE` = NULL WHERE 
 
 ---
 
-## Step 2b: Standardisation — Violation Code and Violation Description
+## Step 2b: Standardisation - Violation Code and Violation Description
 
 #### Background
 
@@ -169,7 +169,7 @@ A verification query confirmed the standardisation was successful: **0 rows retu
 
 ---
 
-## Step 2c: Standardisation — Zipcode
+## Step 2c: Standardisation - Zipcode
 
 #### Background
 
@@ -215,7 +215,7 @@ SET ZIPCODE = NULL WHERE ZIPCODE = '' OR ZIPCODE = '0';
 
 ---
 
-## Step 2d: Standardisation — Geolocation
+## Step 2d: Standardisation - Geolocation
 
 #### Background
 
@@ -269,7 +269,7 @@ The BUILDING count came in at 484 rather than 481, accounted for by 3 additional
 
 ---
 
-## Step 2e: Standardisation — Phone Number
+## Step 2e: Standardisation - Phone Number
 
 #### Background
 
@@ -372,7 +372,7 @@ Verification: count of rows still starting with a single compass letter returned
 
 ---
 
-## Step 2f: Standardisation — Dates
+## Step 2f: Standardisation - Dates
 
 #### Background
 
