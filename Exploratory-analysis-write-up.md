@@ -54,7 +54,6 @@ Across all five boroughs the most common violation is non-food contact surface i
 Food safety performance was measured using three complementary metrics rather than one, to avoid a misleading picture from any single figure:
 
 - **Average SCORE:** the primary measure of overall inspection performance (higher = worse in NYC's system)
-- **Critical violation percentage:** the proportion of inspections where at least one Critical violation was cited
 - **Grade distribution:** the breakdown of A, B, C, N, Z and P grades per cuisine and borough
 
 `COUNT(SCORE)` was used rather than `COUNT(*)` throughout, so that the sample size behind each average reflects only scored inspections rather than all rows. `COUNT(GRADE)` was used as the denominator for all grade percentages rather than `COUNT(*)`, because GRADE has a large number of NULL values by design. Using `COUNT(*)` would have artificially deflated all grade percentages by including inspections that were never eligible for a grade.
@@ -98,7 +97,6 @@ N, Z and P are administrative statuses rather than performance grades and should
 
 - Cuisine groups with the highest average scores tend to have lower grade A percentages.
 - Groups with lower average scores tend to have higher grade A percentages; American Manhattan has 75.99% A grades from a very large inspection base.
-- Critical violation percentages are consistently high across all cuisines, ranging from roughly 40% to 65%, suggesting critical violations are widespread rather than isolated to specific cuisine types.
 
 #### Sample size caveat
 
@@ -181,7 +179,7 @@ Manhattan has the highest raw violation counts in every category, reflecting res
 
 Question 4 is a synthesis question. It draws on the findings from Questions 1, 2 and 3, combined with a neighbourhood (NTA) level query, to identify where food safety risk concentrates geographically. The aim is to pinpoint the areas and violations that matter most. Deciding the precise mechanism to address them is the natural follow-on step rather than something this analysis prescribes.
 
-A query was built grouping by NTA and BORO, calculating average score, score count and critical violation percentage. This extended the Question 2 cuisine-level analysis down to neighbourhood level. NULL NTA values were filtered out as they represent inspections where geographic data was not recorded.
+A query was built grouping by NTA and BORO, calculating average score, score count. This extended the Question 2 cuisine-level analysis down to neighbourhood level. NULL NTA values were filtered out as they represent inspections where geographic data was not recorded.
 
 #### Where to focus inspections
 
@@ -197,7 +195,7 @@ The worst performing neighbourhoods by average score with meaningful sample size
 
 **Staten Island:** Grymes Hill-Clifton-Fox Hills (SI08, avg 26.3) and Port Richmond (SI28, avg 25.4), though Staten Island's borough-level averages are lower than other boroughs overall, suggesting comparatively better performance.
 
-The clearest signal is to concentrate increased inspection frequency and proactive enforcement in the Bronx (particularly Allerton-Pelham Gardens, Woodlawn-Wakefield and Fordham South) and Queens (particularly Elmhurst-Maspeth and Flushing), where high average scores and critical violation rates are sustained across large restaurant populations.
+The clearest signal is to concentrate increased inspection frequency and proactive enforcement in the Bronx (particularly Allerton-Pelham Gardens, Woodlawn-Wakefield and Fordham South) and Queens (particularly Elmhurst-Maspeth and Flushing), where high average scores are sustained across large restaurant populations.
 
 #### Which violations to address
 
@@ -211,7 +209,7 @@ From Question 2, the South Asian cuisine carries the highest average scores acro
 
 #### Key summary
 
-**Where to inspect:** increase frequency and enforcement intensity in the Bronx (Allerton-Pelham Gardens, Woodlawn-Wakefield, Fordham South) and Queens (Elmhurst-Maspeth, Flushing), which show the highest sustained average scores and critical violation rates with large restaurant populations.
+**Where to inspect:** increase frequency and enforcement intensity in the Bronx (Allerton-Pelham Gardens, Woodlawn-Wakefield, Fordham South) and Queens (Elmhurst-Maspeth, Flushing), which show the highest sustained average scores with large restaurant populations.
 
 **Which violations to address:** focus on 10F and 08A, the two dominant and growing violations citywide, and find a route to tackle them directly in the worst affected areas rather than continuing to cite them repeatedly.
 
