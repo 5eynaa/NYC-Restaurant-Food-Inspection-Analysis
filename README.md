@@ -33,12 +33,6 @@ The full workflow was carried out in MySQL, from raw import through to the analy
 2. **Exploratory data analysis** — four sets of aggregation queries, using window functions and CTEs to rank and segment violations, scores and grades by borough, cuisine, neighbourhood (NTA) and year.
 3. **Visualisation** in Power BI to present the findings.
 
-The detailed step by step write ups, with every query and the reasoning behind each decision, are linked below:
-
-- [Data cleaning write up](docs/data-cleaning.md)
-- [Exploratory analysis write up](docs/exploratory-analysis.md)
-- [All cleaning SQL](sql/01_cleaning.sql)
-- [All analysis SQL](sql/02_analysis.sql)
 
 ## Skills
 
