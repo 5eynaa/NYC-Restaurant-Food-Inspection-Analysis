@@ -1,6 +1,9 @@
 -- =====================================================================
--- NYC Restaurant Inspection Analysis - EXPLORATORY ANALYSIS
--- Four analysis questions. Engine: MySQL
+-- NYC Restaurant Inspection Analysis - EXPLORATORY ANALYSIS - SQL
+-- QUESTION 1: Which violations are most common, and where?
+-- QUESTION 2: Which cuisines and neighbourhoods perform worst?
+-- QUESTION 3: How do grades and violations vary by borough and time?
+-- QUESTION 4: Where should the city focus?
 -- =====================================================================
 
 
@@ -30,7 +33,7 @@ WHERE `VIOLATION DESCRIPTION` IS NOT NULL AND BORO IS NOT NULL
 GROUP BY BORO, `VIOLATION DESCRIPTION`, `VIOLATION CODE`
 ORDER BY BORO, violation_count DESC;
 
--- Step 3: top 5 per borough (CTE + ROW_NUMBER partitioned by borough)
+-- Step 3: top 5 per borough 
 WITH violation_rankings AS (
     SELECT
         BORO,
@@ -114,8 +117,6 @@ GROUP BY YEAR(`INSPECTION DATE`), BORO, GRADE
 ORDER BY BORO, YEAR(`INSPECTION DATE`), GRADE;
 
 -- Part B: violation frequency by borough and year
--- NOTE: the GRADE IS NOT NULL filter from Part A was deliberately removed here.
--- Leaving it in undercounts violations on ungraded inspections.
 SELECT
     YEAR(`INSPECTION DATE`) AS `inspection year`,
     BORO,
@@ -130,7 +131,6 @@ ORDER BY BORO, YEAR(`INSPECTION DATE`), violation_code_count DESC;
 
 -- ---------------------------------------------------------------------
 -- QUESTION 4: Where should the city focus?
--- Synthesis question. New SQL = NTA-level neighbourhood targeting.
 -- ---------------------------------------------------------------------
 SELECT
     NTA,
