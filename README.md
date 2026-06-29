@@ -105,8 +105,7 @@ Performance was measured with three complementary metrics rather than one: avera
 *Fig 3b. Line charts tracking finalised grades (A, B, and C) distribution across NYC’s 5 boroughs (2022- 2025 YTD), excluding Pending/Not Yet Graded.*
 
 
-<img width="1397" height="1107" alt="image" src="https://github.com/user-attachments/assets/94194404-c954-4b4b-8fca-8efa86e853cf" />
-
+<img width="529" height="586" alt="image" src="https://github.com/user-attachments/assets/f7893e6e-3703-4673-9bab-e98123bae441" />
 
 *Fig 3c. Line charts presenting top 5 violation codes per borough across NYC (2022 - 2025 YTD). Clear domination by 10F (non-food contact surface or equipment) in all 5 boroughs, showing a gradual upward trend. Refer to the Table 1. for the violation descriptions.*
 
@@ -122,7 +121,8 @@ A synthesis question, drawing on Questions 1 to 3 plus a neighbourhood (NTA) lev
 <!-- ![Question 4 — worst NTAs bubble map](visuals/your-file.png)   -->
 <!-- ============================================================= -->
 
-<img width="720" height="563" alt="image" src="https://github.com/user-attachments/assets/e727093a-ac0a-4160-acbf-37ba10a190c5" />
+<img width="1397" height="1107" alt="image" src="https://github.com/user-attachments/assets/92e53c3d-0db8-410e-b096-3a9c06e9ea6c" />
+
 
 *Fig 4. Bubble map showing NYC's top 10 highest-risk neighbourhoods by average inspection score. Larger bubbles indicate worse performance. Results are concentrated in Queens and Brooklyn, identifying these boroughs as the city's priority areas for food safety inspections and resource allocation.*
 
