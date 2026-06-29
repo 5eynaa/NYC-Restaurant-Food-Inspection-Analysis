@@ -6,7 +6,6 @@ New York City runs tens of thousands of restaurant inspections every year, but i
 
 The headline findings: two violations (10F, non food contact surface issues, and 08A, conditions conducive to pests) dominate every borough in every year, and both are structural rather than behavioural. A small number of neighbourhoods and cuisine groups carry consistently higher risk, with average scores well above the citywide norm. From this, the analysis sets out where future inspection effort could be targeted. All four visualisations were built in Power BI.
 
-The data is public and the questions are the author's own framing, used to demonstrate an end to end analytical workflow rather than to fulfil a commissioned brief.
 
 ## Problem
 
@@ -27,7 +26,6 @@ The DOHMH inspects every restaurant in the city and records violations, scores a
 
 ## Methodology
 
-The full workflow was carried out in MySQL, from raw import through to the analytical queries that answer each question.
 
 1. **Data cleaning** — duplicate removal, a full blank and NULL audit across all 27 columns, canonical standardisation of violation descriptions and street names, and conversion of date columns to proper `DATE` types.
 2. **Exploratory data analysis** — four sets of aggregation queries, using window functions and CTEs to rank and segment violations, scores and grades by borough, cuisine, neighbourhood (NTA) and year.
