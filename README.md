@@ -105,7 +105,8 @@ Performance was measured with three complementary metrics rather than one: avera
 *Fig 3b. Line charts tracking finalised grades (A, B, and C) distribution across NYC’s 5 boroughs (2022- 2025 YTD), excluding Pending/Not Yet Graded.*
 
 
-<img width="509" height="572" alt="image" src="https://github.com/user-attachments/assets/d1b19e23-ecc2-4ee5-955c-bf78de05069d" />
+<img width="1397" height="1107" alt="image" src="https://github.com/user-attachments/assets/94194404-c954-4b4b-8fca-8efa86e853cf" />
+
 
 *Fig 3c. Line charts presenting top 5 violation codes per borough across NYC (2022 - 2025 YTD). Clear domination by 10F (non-food contact surface or equipment) in all 5 boroughs, showing a gradual upward trend. Refer to the Table 1. for the violation descriptions.*
 
